@@ -1,291 +1,346 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المشاريع - Website Abdullah</title>
-<style>
-/* =================== الخلفية العامة =================== */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1e90ff, #4682b4, #5dade2);
-    background-size: 300% 300%;
-    animation: gradientMove 10s ease infinite;
-    color: #fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المشاريع - Website Abdullah</title>
+    <style>
+        /* =================== الخلفية العامة =================== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e90ff, #4682b4, #5dade2);
+            background-size: 300% 300%;
+            animation: gradientMove 10s ease infinite;
+            color: #fff;
+        }
 
-@keyframes gradientMove {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-}
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
 
-/* =================== الهيدر =================== */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0,0,0,0.3);
-    padding: 15px 50px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+            50% {
+                background-position: 100% 50%;
+            }
 
-header h1 {
-    font-size: 28px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-}
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
+        /* =================== الهيدر =================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px 50px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
+        header h1 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin: 5px 0;
+        }
 
-header nav ul li a:hover {
-    background: linear-gradient(90deg, #4682b4, #5dade2);
-    box-shadow: 0 0 10px rgba(255,255,255,0.3);
-    transform: scale(1.1);
-}
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
 
-/* =================== حاوية البطاقات =================== */
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 50px 60px;
-}
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-/* =================== تصميم كل بطاقة =================== */
-.card {
-    background: rgba(0,0,0,0.25);
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 15px rgba(30,144,255,0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-}
+        header nav ul li a:hover {
+            background: linear-gradient(90deg, #4682b4, #5dade2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(30,144,255,0.6);
-}
+        /* =================== حاوية البطاقات =================== */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 50px 20px;
+        }
 
-/* =================== صورة المشروع =================== */
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
+        /* =================== تصميم كل بطاقة =================== */
+        .card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
 
-/* =================== محتوى البطاقة =================== */
-.card-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(30, 144, 255, 0.6);
+        }
 
-.card-content h3 {
-    font-size: 20px;
-    margin: 0;
-    color: #fff;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-}
+        /* =================== صورة المشروع =================== */
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
 
-.card-content p {
-    font-size: 14px;
-    color: #f0f0f0;
-    flex-grow: 1;
-    line-height: 1.5;
-}
+        /* =================== محتوى البطاقة =================== */
+        .card-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-/* =================== معلومات إضافية =================== */
-.card-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 13px;
-    color: #e0e0e0;
-}
+        .card-content h3 {
+            font-size: 18px;
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
 
-/* =================== أزرار البطاقة =================== */
-.card-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
+        .card-content p {
+            font-size: 14px;
+            color: #f0f0f0;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
 
-.card-buttons button {
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
+        /* =================== معلومات إضافية =================== */
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
 
-/* زر التنزيل */
-.download-btn {
-    background: #1e90ff;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
+        @media screen and (min-width: 480px) {
+            .card-info {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
 
-.download-btn:hover {
-    background: #5dade2;
-    transform: scale(1.1);
-}
+        /* =================== أزرار البطاقة =================== */
+        .card-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-/* زر الإعجاب */
-.like-btn {
-    background: #ff4d4d;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        .card-buttons button {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
 
-.like-btn.liked {
-    background: #ff1a1a;
-}
+        .download-btn {
+            background: #1e90ff;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-.like-btn:hover {
-    transform: scale(1.1);
-}
+        .download-btn:hover {
+            background: #5dade2;
+            transform: scale(1.05);
+        }
 
-/* =================== العدادات =================== */
-.like-count {
-    font-size: 14px;
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
+        .like-btn {
+            background: #ff4d4d;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-/* =================== رسائل الفلاش =================== */
-.flash-message {
-    position: fixed;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.7);
-    padding: 15px 25px;
-    border-radius: 10px;
-    color: #fff;
-    z-index: 200;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
+        .like-btn.liked {
+            background: #ff1a1a;
+        }
 
-/* =================== Footer =================== */
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #fff;
-    font-size: 14px;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-}
+        .like-btn:hover {
+            transform: scale(1.05);
+        }
 
-/* =================== Responsive =================== */
-@media screen and (max-width: 768px) {
-    .cards-container {
-        padding: 30px 20px;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-}
+        /* =================== العدادات =================== */
+        .like-count {
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
 
-</style>
+        /* =================== رسائل الفلاش =================== */
+        .flash-message {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: #fff;
+            z-index: 200;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+        }
+
+        /* =================== Footer =================== */
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #fff;
+            font-size: 13px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        /* =================== Responsive Adjustments =================== */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            header nav ul {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .card-content h3 {
+                font-size: 16px;
+            }
+
+            .card-content p {
+                font-size: 13px;
+            }
+
+            .card-buttons button {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                padding: 20px 10px;
+            }
+
+            .card img {
+                height: 150px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Website Abdullah</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">الرئيسية</a></li>
-            <li><a href="{{ url_for('new_project') }}">رفع مشروع</a></li>
-            <li><a href="{{ url_for('comments') }}">التعليقات</a></li>
-            <li><a href="{{ url_for('profile') }}">حسابي</a></li>
-            <li><a href="{{ url_for('logout') }}">تسجيل الخروج</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <h1>Website Abdullah</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">الرئيسية</a></li>
+                <li><a href="{{ url_for('new_project') }}">رفع مشروع</a></li>
+                <li><a href="{{ url_for('comments') }}">التعليقات</a></li>
+                <li><a href="{{ url_for('profile') }}">حسابي</a></li>
+                <li><a href="{{ url_for('logout') }}">تسجيل الخروج</a></li>
+            </ul>
+        </nav>
+    </header>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        {% for category, message in messages %}
-            <div class="flash-message">{{ message }}</div>
-        {% endfor %}
+    {% for category, message in messages %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
     {% endif %}
-{% endwith %}
+    {% endwith %}
 
-<div class="cards-container">
-    {% for project in projects %}
-    <div class="card">
-        <img src="{{ project['image_url'] }}" alt="{{ project['name'] }}">
-        <div class="card-content">
-            <h3>{{ project['name'] }}</h3>
-            <p>{{ project['description'] }}</p>
-            <div class="card-info">
-                <span>رفع بواسطة: {{ project['username'] }}</span>
-                <span>{{ project['timestamp'] }}</span>
-            </div>
-            <div class="card-buttons">
-                <a href="{{ url_for('download_file', filename=project['file_path'].split('/')[-1]) }}">
-                    <button class="download-btn">تنزيل</button>
-                </a>
-                <button class="like-btn {% if project['liked'] %}liked{% endif %}" 
+    <div class="cards-container">
+        {% for project in projects %}
+        <div class="card">
+            <img src="{{ project['image_url'] }}" alt="{{ project['name'] }}">
+            <div class="card-content">
+                <h3>{{ project['name'] }}</h3>
+                <p>{{ project['description'] }}</p>
+                <div class="card-info">
+                    <span>رفع بواسطة: {{ project['username'] }}</span>
+                    <span>{{ project['timestamp'] }}</span>
+                </div>
+                <div class="card-buttons">
+                    <a href="{{ url_for('download_file', filename=project['file_path'].split('/')[-1]) }}">
+                        <button class="download-btn">تنزيل</button>
+                    </a>
+                    <button class="like-btn {% if project['liked'] %}liked{% endif %}"
                         data-project-id="{{ project['id'] }}">
-                    ❤️ <span class="like-count">{{ project['like_count'] }}</span>
-                </button>
+                        ❤️ <span class="like-count">{{ project['like_count'] }}</span>
+                    </button>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<footer>
-    © 2025 Website Abdullah. جميع الحقوق محفوظة.
-</footer>
+    <footer>
+        © 2025 Website Abdullah. جميع الحقوق محفوظة.
+    </footer>
 
-<script>
-// ========= التعامل مع الإعجاب بدون إعادة تحميل الصفحة =========
-document.querySelectorAll('.like-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const projectId = btn.dataset.projectId;
-        fetch(`/like/${projectId}`, {method: 'POST'})
-        .then(res => res.json())
-        .then(data => {
-            if(data.liked){
-                btn.classList.add('liked');
-            } else {
-                btn.classList.remove('liked');
-            }
-            btn.querySelector('.like-count').textContent = data.like_count;
-        })
-        .catch(err => console.error(err));
-    });
-});
-</script>
+    <script>
+        // ========= التعامل مع الإعجاب بدون إعادة تحميل الصفحة =========
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const projectId = btn.dataset.projectId;
+                fetch(`/like/${projectId}`, { method: 'POST' })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.liked) {
+                            btn.classList.add('liked');
+                        } else {
+                            btn.classList.remove('liked');
+                        }
+                        btn.querySelector('.like-count').textContent = data.like_count;
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    </script>
 
 </body>
+<script type='text/javascript' src='//foilbundle.com/2d/27/ad/2d27ad97dd3226dea96082ddba7f89e5.js'></script>
+
 </html>

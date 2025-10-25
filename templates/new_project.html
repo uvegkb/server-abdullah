@@ -15,29 +15,77 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .box {
             background: white;
             color: #2c3e50;
-            padding: 30px;
+            padding: 30px 20px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 350px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
+            box-sizing: border-box;
         }
 
-        input,
+        .box h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
         textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 8px;
             border: 1px solid #ccc;
+            font-size: 15px;
+            box-sizing: border-box;
         }
 
-        button {
+        textarea {
+            resize: vertical;
+        }
+
+        /* ========== زر رفع الملف المخصص ========== */
+        .file-input-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            opacity: 0;
+            width: 100%;
+            height: 45px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .custom-file-btn {
+            display: block;
+            width: 93%;
+            padding: 12px;
+            background: #1e90ff;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .custom-file-btn:hover {
+            background: #5dade2;
+            transform: scale(1.02);
+        }
+
+        button.submit-btn {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
@@ -46,16 +94,39 @@
             background: #4682b4;
             color: white;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
             transition: 0.3s;
         }
 
-        button:hover {
+        button.submit-btn:hover {
             background: #5dade2;
         }
 
         a {
             color: #4682b4;
             text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============ Responsive ============ */
+        @media screen and (max-width: 768px) {
+            .box {
+                padding: 20px 15px;
+                width: 90%;
+            }
+
+            input[type="text"],
+            textarea,
+            .custom-file-btn,
+            button.submit-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -66,7 +137,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div style="color:red;">{{ message }}</div>
+        <div style="color:red; margin-bottom:10px;">{{ message }}</div>
         {% endfor %}
         {% endif %}
         {% endwith %}
@@ -74,11 +145,26 @@
             <input type="text" name="name" placeholder="اسم المشروع" required>
             <textarea name="description" placeholder="وصف المشروع" required></textarea>
             <input type="text" name="image_url" placeholder="رابط صورة المشروع" required>
-            <input type="file" name="file" required>
-            <button type="submit">رفع المشروع</button>
+
+            <!-- زر رفع الملف المحسن -->
+            <div class="file-input-wrapper">
+                <label class="custom-file-btn">اختر الملف</label>
+                <input type="file" name="file" required onchange="updateFileName(this)">
+            </div>
+            <small id="file-name" style="display:block; margin-top:5px; color:#555;"></small>
+
+            <button type="submit" class="submit-btn">رفع المشروع</button>
             <p><a href="{{ url_for('home') }}">العودة للمشاريع</a></p>
         </form>
     </div>
+
+    <script>
+        function updateFileName(input) {
+            const fileName = input.files.length ? input.files[0].name : '';
+            document.getElementById('file-name').textContent = fileName;
+        }
+    </script>
 </body>
+
 
 </html>

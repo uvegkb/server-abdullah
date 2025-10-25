@@ -10,51 +10,98 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(90deg, #4682b4, #5dade2);
+            background: linear-gradient(135deg, #4682b4, #5dade2);
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .register-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             color: #2c3e50;
-            padding: 40px;
+            padding: 35px 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .register-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .register-box h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #2c3e50;
         }
 
         .register-box input {
-            width: 100%;
-            padding: 12px;
+            width: 83%;
+            padding: 14px;
             margin: 10px 0;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid #ccc;
+            font-size: 16px;
         }
 
         .register-box button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
+            width: 90%;
+            padding: 14px;
+            margin-top: 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             background: #4682b4;
             color: white;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
 
         .register-box button:hover {
             background: #5dade2;
+            transform: scale(1.05);
         }
 
-        a {
+        .register-box p {
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        .register-box a {
             color: #4682b4;
+            font-weight: bold;
             text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .register-box a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 480px) {
+            .register-box {
+                padding: 25px 20px;
+            }
+
+            .register-box h2 {
+                font-size: 22px;
+            }
+
+            .register-box input,
+            .register-box button {
+                font-size: 15px;
+                padding: 12px;
+            }
+
+            .register-box p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -65,7 +112,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div style="color:red;">{{ message }}</div>
+        <div style="color:red; margin-bottom:10px;">{{ message }}</div>
         {% endfor %}
         {% endif %}
         {% endwith %}

@@ -18,14 +18,17 @@
             height: 100vh;
         }
 
+        /* =================== صندوق تسجيل الدخول =================== */
         .login-box {
             background: white;
             color: #2c3e50;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             width: 350px;
+            max-width: 90%;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .login-box input {
@@ -34,6 +37,7 @@
             margin: 10px 0;
             border-radius: 8px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
         .login-box button {
@@ -52,9 +56,34 @@
             background: #5dade2;
         }
 
-        a {
+        .login-box p {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .login-box a {
             color: #4682b4;
             text-decoration: none;
+        }
+
+        /* =================== رسائل التنبيه =================== */
+        .login-box .flash-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* =================== Responsive Adjustments =================== */
+        @media screen and (max-width: 480px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-box button,
+            .login-box input {
+                font-size: 14px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -65,7 +94,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div style="color:red;">{{ message }}</div>
+        <div class="flash-message">{{ message }}</div>
         {% endfor %}
         {% endif %}
         {% endwith %}

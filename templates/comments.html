@@ -32,12 +32,18 @@
 
         .container {
             max-width: 700px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 25px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             color: #2c3e50;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         textarea {
@@ -48,6 +54,7 @@
             border: 1px solid #ccc;
             resize: vertical;
             font-size: 15px;
+            box-sizing: border-box;
         }
 
         button {
@@ -73,38 +80,59 @@
             border-radius: 10px;
             position: relative;
             border: 1px solid #ddd;
+            box-sizing: border-box;
         }
 
         .comment p {
             font-size: 16px;
             line-height: 1.6;
+            margin: 0 0 8px 0;
         }
 
         .comment small {
             display: block;
-            margin-top: 8px;
             color: #555;
+            font-size: 13px;
+        }
+
+        .comment form textarea {
+            width: 100%;
+            font-size: 15px;
+            padding: 8px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        .comment-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .edit-btn,
+        .save-btn,
+        .cancel-btn {
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
         }
 
         .edit-btn {
-            position: absolute;
-            top: 12px;
-            left: 12px;
             background: #3498db;
-            font-size: 13px;
-            padding: 5px 10px;
+            color: #fff;
         }
 
         .save-btn {
             background: #27ae60;
-            font-size: 13px;
-            padding: 5px 10px;
+            color: #fff;
         }
 
         .cancel-btn {
             background: #e74c3c;
-            font-size: 13px;
-            padding: 5px 10px;
+            color: #fff;
         }
 
         a {
@@ -120,6 +148,31 @@
         .footer {
             text-align: center;
             margin-top: 20px;
+        }
+
+        /* =================== Responsive =================== */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+
+            .comment-buttons {
+                justify-content: flex-start;
+            }
+
+            textarea,
+            .comment form textarea {
+                font-size: 14px;
+            }
+
+            button,
+            .edit-btn,
+            .save-btn,
+            .cancel-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -141,7 +194,9 @@
             <small>بواسطة: {{ comment['username'] }} | {{ comment['timestamp'] }}</small>
 
             {% if comment['user_id'] == session['user_id'] %}
-            <button class="edit-btn" onclick="enableEdit({{ comment['id'] }})">تعديل</button>
+            <div class="comment-buttons">
+                <button class="edit-btn" onclick="enableEdit({{ comment['id'] }})">تعديل</button>
+            </div>
             {% endif %}
         </div>
         {% endfor %}
@@ -157,12 +212,14 @@
             const oldText = textElement.innerText;
 
             textElement.innerHTML = `
-                <form method="POST" action="/edit_comment/${id}">
-                    <textarea name="new_content" required>${oldText}</textarea>
-                    <button type="submit" class="save-btn">حفظ</button>
-                    <button type="button" class="cancel-btn" onclick="cancelEdit(${id}, '${oldText}')">إلغاء</button>
-                </form>
-            `;
+        <form method="POST" action="/edit_comment/${id}">
+            <textarea name="new_content" required>${oldText}</textarea>
+            <div class="comment-buttons">
+                <button type="submit" class="save-btn">حفظ</button>
+                <button type="button" class="cancel-btn" onclick="cancelEdit(${id}, '${oldText}')">إلغاء</button>
+            </div>
+        </form>
+    `;
         }
 
         function cancelEdit(id, text) {
