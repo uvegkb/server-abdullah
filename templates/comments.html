@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التعليقات</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #1e90ff, #4682b4, #5dade2);
+            color: white;
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            color: #2c3e50;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5dade2;
+            transform: translateY(-2px);
+        }
+
+        .comment {
+            background: #f8f8f8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .comment p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .comment small {
+            display: block;
+            margin-top: 8px;
+            color: #555;
+        }
+
+        .edit-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #3498db;
+            font-size: 13px;
+            padding: 5px 10px;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            font-size: 13px;
+            padding: 5px 10px;
+        }
+
+        .cancel-btn {
+            background: #e74c3c;
+            font-size: 13px;
+            padding: 5px 10px;
+        }
+
+        a {
+            color: #4682b4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>التعليقات</h2>
+
+        <form method="POST">
+            <textarea name="content" placeholder="اكتب تعليقك هنا..." required></textarea>
+            <button type="submit">نشر التعليق</button>
+        </form>
+
+        <hr>
+
+        {% for comment in comments %}
+        <div class="comment" id="comment-{{ comment['id'] }}">
+            <p id="text-{{ comment['id'] }}">{{ comment['content'] }}</p>
+            <small>بواسطة: {{ comment['username'] }} | {{ comment['timestamp'] }}</small>
+
+            {% if comment['user_id'] == session['user_id'] %}
+            <button class="edit-btn" onclick="enableEdit({{ comment['id'] }})">تعديل</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="footer">
+            <p><a href="{{ url_for('home') }}">العودة للصفحة الرئيسية</a></p>
+        </div>
+    </div>
+
+    <script>
+        function enableEdit(id) {
+            const textElement = document.getElementById(`text-${id}`);
+            const oldText = textElement.innerText;
+
+            textElement.innerHTML = `
+                <form method="POST" action="/edit_comment/${id}">
+                    <textarea name="new_content" required>${oldText}</textarea>
+                    <button type="submit" class="save-btn">حفظ</button>
+                    <button type="button" class="cancel-btn" onclick="cancelEdit(${id}, '${oldText}')">إلغاء</button>
+                </form>
+            `;
+        }
+
+        function cancelEdit(id, text) {
+            document.getElementById(`text-${id}`).innerHTML = text;
+        }
+    </script>
+</body>
+
+</html>

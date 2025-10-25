@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المشاريع - Website Abdullah</title>
+<style>
+/* =================== الخلفية العامة =================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e90ff, #4682b4, #5dade2);
+    background-size: 300% 300%;
+    animation: gradientMove 10s ease infinite;
+    color: #fff;
+}
+
+@keyframes gradientMove {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+/* =================== الهيدر =================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    padding: 15px 50px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background: linear-gradient(90deg, #4682b4, #5dade2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    transform: scale(1.1);
+}
+
+/* =================== حاوية البطاقات =================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 50px 60px;
+}
+
+/* =================== تصميم كل بطاقة =================== */
+.card {
+    background: rgba(0,0,0,0.25);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(30,144,255,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(30,144,255,0.6);
+}
+
+/* =================== صورة المشروع =================== */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* =================== محتوى البطاقة =================== */
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #f0f0f0;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+/* =================== معلومات إضافية =================== */
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #e0e0e0;
+}
+
+/* =================== أزرار البطاقة =================== */
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.card-buttons button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* زر التنزيل */
+.download-btn {
+    background: #1e90ff;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.download-btn:hover {
+    background: #5dade2;
+    transform: scale(1.1);
+}
+
+/* زر الإعجاب */
+.like-btn {
+    background: #ff4d4d;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.like-btn.liked {
+    background: #ff1a1a;
+}
+
+.like-btn:hover {
+    transform: scale(1.1);
+}
+
+/* =================== العدادات =================== */
+.like-count {
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* =================== رسائل الفلاش =================== */
+.flash-message {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: #fff;
+    z-index: 200;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* =================== Footer =================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* =================== Responsive =================== */
+@media screen and (max-width: 768px) {
+    .cards-container {
+        padding: 30px 20px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Website Abdullah</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">الرئيسية</a></li>
+            <li><a href="{{ url_for('new_project') }}">رفع مشروع</a></li>
+            <li><a href="{{ url_for('comments') }}">التعليقات</a></li>
+            <li><a href="{{ url_for('profile') }}">حسابي</a></li>
+            <li><a href="{{ url_for('logout') }}">تسجيل الخروج</a></li>
+        </ul>
+    </nav>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="cards-container">
+    {% for project in projects %}
+    <div class="card">
+        <img src="{{ project['image_url'] }}" alt="{{ project['name'] }}">
+        <div class="card-content">
+            <h3>{{ project['name'] }}</h3>
+            <p>{{ project['description'] }}</p>
+            <div class="card-info">
+                <span>رفع بواسطة: {{ project['username'] }}</span>
+                <span>{{ project['timestamp'] }}</span>
+            </div>
+            <div class="card-buttons">
+                <a href="{{ url_for('download_file', filename=project['file_path'].split('/')[-1]) }}">
+                    <button class="download-btn">تنزيل</button>
+                </a>
+                <button class="like-btn {% if project['liked'] %}liked{% endif %}" 
+                        data-project-id="{{ project['id'] }}">
+                    ❤️ <span class="like-count">{{ project['like_count'] }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<footer>
+    © 2025 Website Abdullah. جميع الحقوق محفوظة.
+</footer>
+
+<script>
+// ========= التعامل مع الإعجاب بدون إعادة تحميل الصفحة =========
+document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const projectId = btn.dataset.projectId;
+        fetch(`/like/${projectId}`, {method: 'POST'})
+        .then(res => res.json())
+        .then(data => {
+            if(data.liked){
+                btn.classList.add('liked');
+            } else {
+                btn.classList.remove('liked');
+            }
+            btn.querySelector('.like-count').textContent = data.like_count;
+        })
+        .catch(err => console.error(err));
+    });
+});
+</script>
+
+</body>
+</html>

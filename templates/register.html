@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل حساب جديد</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, #4682b4, #5dade2);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-box {
+            background: white;
+            color: #2c3e50;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        .register-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .register-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #4682b4;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .register-box button:hover {
+            background: #5dade2;
+        }
+
+        a {
+            color: #4682b4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-box">
+        <h2>إنشاء حساب جديد</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div style="color:red;">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="اسم المستخدم" required>
+            <input type="password" name="password" placeholder="كلمة المرور" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <button type="submit">سجل الآن</button>
+            <p>لديك حساب؟ <a href="{{ url_for('login_page') }}">تسجيل الدخول</a></p>
+        </form>
+    </div>
+</body>
+
+</html>
